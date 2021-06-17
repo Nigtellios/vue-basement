@@ -1,7 +1,63 @@
-.hello {
-  h3 {
-    font-size: 2rem;
-    font-weight: bold;
-    margin: 40px 0 0;
+.product {
+  display: flex;
+  flex-flow: row wrap;
+
+  &__image {
+
+  }
+
+  &__heading {
+    padding: 25px 25px 15px 25px;
+  }
+
+  &__under-tag {
+    padding: 0 25px 15px 25px;
+    color: #001fd2;
+  }
+
+  &__description {
+    padding: 20px 0 0 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  &__column {
+    max-width: 100%;
+    width: 50%;
+
+    &-description-box {
+      padding: 10px 25px 0 25px;
+    }
+  }
+
+  // Column width modifiers
+  &__column:nth-child(1) {
+    width: 60%;
+    position: relative;
+
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      height: 100%;
+      width: 200px;
+      background: #FFFFFF;
+      z-index: 1;
+      top: 0;
+      right: 0;
+      clip-path: polygon(70% 0, 100% 0, 100% 100%, 70% 100%, 40% 20%);
+      box-shadow: -10px -10px 10px 0px rgba(0,0,0,0.5);
+    }
+  }
+
+  &__column:nth-child(2) {
+    width: 40%;
+  }
+}
+
+@media (max-width: $lg-screen) {
+  .product {
+    &__column {
+      max-width: 100%;
+    }
   }
 }
