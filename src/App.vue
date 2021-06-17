@@ -1,26 +1,14 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <single-product-page-vue2></single-product-page-vue2>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import SingleProductPageVue2 from './components/SingleProductPageVue2/SingleProductPageVue2.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    SingleProductPageVue2,
   }
 }
 </script>
-
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
