@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: 'MainScreenVue2',
+  name: 'SingleProductPageVue2',
   props: {
     productName: String,
     productUnderTag: String,
@@ -32,4 +32,4 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss" src="./MainScreenVue2.scss" />
+<style lang="scss" src="src/components/SingleProductPageVue2/SingleProductPageVue2.scss" />
