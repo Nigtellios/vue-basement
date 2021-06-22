@@ -21,13 +21,22 @@
 
     <section class="product__features">
       <div class="product__features-item" v-for="feature in featuresData" :key="feature.featureID">
-        <img :src="`${feature.iconURL}`" alt=""/>
-        <h4>{{ feature.featureName }}</h4>
-        <p>{{ feature.featureDescription }}</p>
+        <img class="product__features-icon" :src="`${feature.iconURL}`" alt=""/>
+        <div class="product__features-content">
+          <h4>{{ feature.featureName }}</h4>
+          <p>{{ feature.featureDescription }}</p>
+        </div>
       </div>
     </section>
 
     <section class="product__highlights">
+      <div class="product__highlights-row">
+        <img class="product__highlights-image" src="" alt=""/>
+        <div class="product__highlights-content">
+          <h5 class="product__highlights-heading">Best Audio System</h5>
+          <p>A 22-speaker, 960-watt audio system with active noise canceling offers the best listening experience at home or on the road.</p>
+        </div>
+      </div>
     </section>
 
   </div>
@@ -51,25 +60,25 @@ export default {
       featuresData: [
           {
             "featureID": "0",
-            "iconURL": "/",
+            "iconURL": "../../assets/icons/range.svg",
             "featureName": "Range",
             "featureDescription": "340 Miles"
           },
           {
             "featureID": "1",
-            "iconURL": "/",
+            "iconURL": "../../assets/icons/25smph.svg",
             "featureName": "2,5s",
             "featureDescription": "0-60 mph*"
           },
           {
             "featureID": "2",
-            "iconURL": "/",
+            "iconURL": "../../assets/icons/14mile.svg",
             "featureName": "9.9s",
             "featureDescription": "1/4 Mile"
           },
           {
             "featureID": "3",
-            "iconURL": "/",
+            "iconURL": "../../assets/icons/peakpower.svg",
             "featureName": "1,020hp",
             "featureDescription": "Peak Power"
           }
