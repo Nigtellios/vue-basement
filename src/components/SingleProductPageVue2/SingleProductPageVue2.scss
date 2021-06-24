@@ -6,7 +6,7 @@
   }
 
   &__image {
-
+    
   }
 
   /* Product Hero Content */
@@ -124,6 +124,120 @@
 
   &__highlights-p {
     padding: 2rem 5rem 0 5rem;
+  }
+
+  &__highlights-btn {
+    display: block;
+    text-transform: uppercase;
+    margin: 2rem 5rem 0 5rem;
+    padding: 1rem 3rem;
+    border: 2px solid $dark;
+  }
+
+  &__highlights-btn:hover {
+    cursor: pointer;
+    transition: 0.1s linear;
+    color: $white;
+    background: $dark;
+  }
+
+  /* Sidebar Styling */
+  &__sidebar {
+    position: fixed;
+    display: flex;
+    flex-flow: column wrap;
+    max-width: 300px;
+    width: 100%;
+    min-height: 100px;
+    max-height: 500px;
+    height: auto;
+    right: 0;
+    top: 40%;
+    background: $dark;
+    color: $white;
+    padding: 1rem 1rem 3rem 1rem;
+
+  }
+
+  &__sidebar-counter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 50px;
+    width: 50px;
+    margin: -1rem 0 0 -1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Open Sans', sans-serif;
+    background: $green;
+    z-index: 9;
+  }
+
+  .active-list {
+    display: flex;
+    flex-flow: column nowrap;
+
+    &__item{
+      display: flex;
+      flex-flow: row nowrap;
+      position: relative;
+      padding: 0.5rem 0 0.5rem 0;
+    }
+
+    &__item-image-box {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      max-width: 30%;
+      max-height: 100%;
+
+      img {
+        object-fit: cover;
+      }
+    }
+
+    &__item-content {
+      font-size: 0.9rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 0 0 0.5rem;
+    }
+
+    &__item-delete-btn {
+      position: absolute;
+      right: 0;
+      top: 11px;
+      height: 70%;
+      width: 10%;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: $red;
+      font-family: 'Open Sans', sans-serif;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  }
+
+  &__sidebar-close {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 0 0 -1rem -1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Open Sans', sans-serif;
+    width: 100px;
+    height: 50px;
+    background: $aquamarine;
+    color: $white;
+    z-index: 9;
+    cursor: pointer;
   }
 }
 
