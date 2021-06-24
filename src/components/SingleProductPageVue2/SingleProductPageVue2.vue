@@ -38,10 +38,28 @@
           <div class="product__highlights-content">
             <h5 class="product__highlights-heading">{{ highlight.highlightTitle }}</h5>
             <p class="product__highlights-p">{{ highlight.highlightDescription }}</p>
+            <a class="product__highlights-btn" @click="addFeatureToCart(highlight)"><p class="cta">Add this feature</p></a>
           </div>
         </div>
       </div>
     </section>
+
+    <aside class="product__sidebar" v-if="renderFeatures">
+      <span class="product__sidebar-counter" v-if="pickedFeatureAmount > 0">{{ pickedFeatureAmount }}</span>
+      <div class="active-list">
+        <div class="active-list__item" v-for="activeHighlight in activeHighlights" :key="activeHighlight.highlightID">
+          <div class="active-list__item-image-box">
+            <img :src="`${ activeHighlight.highlightImage }`" :alt="`${ activeHighlight.highlightImageAlt}`"/>
+          </div>
+          <div class="active-list__item-content">
+            <h5>{{ activeHighlight.highlightTitle }}</h5>
+          </div>
+          <a class="active-list__item-delete-btn" @click="deleteFeatureFromCart(activeHighlight)">X</a>
+        </div>
+      </div>
+
+      <a class="product__sidebar-close" @click="closeSidebar">CLOSE</a>
+    </aside>
 
   </div>
 </template>
@@ -61,6 +79,8 @@ export default {
       productCtaHeading: 'Check more at Tesla website!',
       productCtaLink: 'https://www.tesla.com/modelx',
       stockAmount: 8,
+      pickedFeatureAmount: 0,
+      renderFeatures: false,
       featuresData: [
           {
             "featureID": "0",
@@ -113,11 +133,45 @@ export default {
           "highlightTitle": "Wireless Gaming",
           "highlightDescription": "Up to 10 teraflops of processing power enables in-car gaming on-par with today’s newest consoles. Wireless controller compatibility lets you game from any seat."
         }
-      ]
+      ],
+      activeHighlights: [],
     }
   },
   methods: {
-    // Webpack asset parsing workaround
+    // Add Highlighted Feature to Cart
+    addFeatureToCart (highlight) {
+
+      if (this.renderFeatures === false) {
+        this.renderFeatures = !this.renderFeatures;
+      }
+
+      if (this.activeHighlights.some((item) => item.highlightID === highlight.highlightID)) {
+        return alert(`You've already added „${highlight.highlightTitle}"!`);
+      } else {
+        this.activeHighlights.push(highlight);
+        // Refresh Counter
+        this.pickedFeatureAmount = this.activeHighlights.length;
+      }
+    },
+
+    // Delete Highlighted Feature from Cart
+    deleteFeatureFromCart (highlight) {
+      let indexOf = this.activeHighlights.indexOf(highlight);
+
+      if (this.activeHighlights.some((item) => item.highlightID === highlight.highlightID)) {
+        this.activeHighlights.splice(indexOf, 1);
+        //Refresh Counter
+        this.pickedFeatureAmount = this.activeHighlights.length;
+      } else {
+        alert(`Item with ID ${highlight.highlightID} does not exist!`);
+      }
+    },
+
+    closeSidebar () {
+      this.renderFeatures = !this.renderFeatures;
+    },
+
+    // Webpack asset parsing workaround - If they are not in /public/
     /* getPictureURL(picture) {
        return require('../../assets/img/' + picture)
      },
