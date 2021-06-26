@@ -11,9 +11,18 @@
         <div class="product__column-description-box">
           <p class="product__description">{{ productDescription }}</p>
           <p class="product__description">Order availability status:</p>
+
           <span v-if="stockAmount > 10" class="availability available">Available!</span>
           <span v-else-if="stockAmount <= 10 && stockAmount > 0" class="availability hurry-up">Hurry up!</span>
           <span v-else class="availability unavailable">Currently unavailable!</span>
+
+          <div class="variants">
+            <div class="variants__item" @mouseover="updateVariant(variant.variantImage)" @click="selectVariant(variant)" v-for="variant in carVariants" :key="carVariants.variantID">
+              <div class="variants__item-icon" :style="{ background: variant.variantColorCode }"></div>
+              <div class="variants__item-heading">{{ variant.variantColor }}</div>
+            </div>
+          </div>
+
           <a :href="productCtaLink" target="_blank"><p class="product__description-cta">{{ productCtaHeading }}</p></a>
         </div>
       </div>
@@ -46,6 +55,13 @@
 
     <aside class="product__sidebar" v-if="renderFeatures">
       <span class="product__sidebar-counter" v-if="pickedFeatureAmount > 0">{{ pickedFeatureAmount }}</span>
+
+      <div class="product__sidebar-variant" v-if="selectedVariant" v-for="variant in selectedVariant" :key="selectedVariant.variantID">
+        <img class="product__sidebar-variant-img" :src="`${variant.variantImage}`" alt="">
+        <p class="product__sidebar-variant-name">{{ variant.variantColor }}</p>
+        <a class="product__sidebar-variant-btn-close" @click="deleteSelectedVariant(variant)">X</a>
+      </div>
+
       <div class="active-list">
         <div class="active-list__item" v-for="activeHighlight in activeHighlights" :key="activeHighlight.highlightID">
           <div class="active-list__item-image-box">
@@ -81,6 +97,38 @@ export default {
       stockAmount: 8,
       pickedFeatureAmount: 0,
       renderFeatures: false,
+      carVariants: [
+        {
+          "variantID": 0,
+          "variantColor": "White",
+          "variantColorCode": "#F7F7F7",
+          "variantImage": "../../assets/img/tesla-x-white.jpg",
+        },
+        {
+          "variantID": 1,
+          "variantColor": "Silver",
+          "variantColorCode": "#717171",
+          "variantImage": "../../assets/img/tesla-x-silver.jpg",
+        },
+        {
+          "variantID": 2,
+          "variantColor": "Blue",
+          "variantColorCode": "#0D47AC",
+          "variantImage": "../../assets/img/tesla-x-blue.jpg",
+        },
+        {
+          "variantID": 4,
+          "variantColor": "Red",
+          "variantColorCode": "#CF0001",
+          "variantImage": "../../assets/img/tesla-x-red.jpg",
+        },
+        {
+          "variantID": 4,
+          "variantColor": "Black",
+          "variantColorCode": "#000000",
+          "variantImage": "../../assets/img/tesla-x-black.jpg",
+        },
+      ],
       featuresData: [
           {
             "featureID": "0",
@@ -134,6 +182,7 @@ export default {
           "highlightDescription": "Up to 10 teraflops of processing power enables in-car gaming on-par with today’s newest consoles. Wireless controller compatibility lets you game from any seat."
         }
       ],
+      selectedVariant: [],
       activeHighlights: [],
     }
   },
@@ -167,9 +216,41 @@ export default {
       }
     },
 
+    // Close/Open Cart (Sidebar)
     closeSidebar () {
       this.renderFeatures = !this.renderFeatures;
     },
+
+    // Update Product image based on Variant
+    updateVariant(variantImage) {
+      this.productImage = variantImage;
+    },
+
+    // Select & Pass Variant to Cart
+    selectVariant(variant) {
+      if (this.renderFeatures === false) {
+        this.renderFeatures = !this.renderFeatures;
+      }
+
+      if (this.selectedVariant.some((item) => item.variantID === variant.variantID)) {
+        return alert(`Car with color ${variant.variantColor} is already in Cart!`);
+      } else if (this.selectedVariant.length >= 1) {
+        return alert(`You can select only one variant per order!`);
+      } else {
+        this.selectedVariant.push(variant);
+      }
+    },
+
+    // Delete Selected Variant from Card
+    deleteSelectedVariant(variant) {
+      let indexOf = this.selectedVariant.indexOf(variant);
+
+      if (this.selectedVariant.some((item) => item.variantID === variant.variantID)) {
+        this.selectedVariant.splice(indexOf, 1);
+      } else {
+        alert(`Item with ID ${variant.variantID} does not exist!`);
+      }
+    }
 
     // Webpack asset parsing workaround - If they are not in /public/
     /* getPictureURL(picture) {
