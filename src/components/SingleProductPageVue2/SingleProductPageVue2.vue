@@ -3,7 +3,11 @@
 
     <section class="product__hero">
       <div class="product__column">
-        <img class="product__image" :src="`${productImage}`" alt="Picture of Tesla Model X" />
+        <div class="product__column-transition-box">
+          <transition name="fade" mode="out-in">
+            <img class="product__image" :src="`${productImage}`" :key="productImage" alt="Picture of Tesla Model X" />
+          </transition>
+        </div>
       </div>
       <div class="product__column">
         <h1 class="product__heading">{{ productName }}</h1>
@@ -53,31 +57,37 @@
       </div>
     </section>
 
-    <aside class="product__sidebar" v-if="renderFeatures">
-      <span class="product__sidebar-counter" v-if="pickedFeatureAmount > 0">{{ pickedFeatureAmount }}</span>
+    <transition name="fade">
+      <aside class="product__sidebar" v-if="renderFeatures">
+        <span class="product__sidebar-counter" v-if="pickedFeatureAmount > 0">{{ pickedFeatureAmount }}</span>
 
-      <div class="product__sidebar-variant" v-if="selectedVariant" v-for="variant in selectedVariant" :key="selectedVariant.variantID">
-        <img class="product__sidebar-variant-img" :src="`${variant.variantImage}`" alt="">
-        <div class="product__sidebar-variant-content">
-          <p class="product__sidebar-variant-name">{{ variant.variantColor }}</p>
-          <a class="product__sidebar-variant-btn-close" @click="deleteSelectedVariant(variant)">X</a>
-        </div>
-      </div>
-
-      <div class="active-list">
-        <div class="active-list__item" v-for="activeHighlight in activeHighlights" :key="activeHighlight.highlightID">
-          <div class="active-list__item-image-box">
-            <img :src="`${ activeHighlight.highlightImage }`" :alt="`${ activeHighlight.highlightImageAlt}`"/>
+        <div class="product__sidebar-variant" v-if="selectedVariant" v-for="variant in selectedVariant" :key="selectedVariant.variantID">
+          <img class="product__sidebar-variant-img" :src="`${variant.variantImage}`" alt="">
+          <div class="product__sidebar-variant-content">
+            <p class="product__sidebar-variant-name">{{ variant.variantColor }}</p>
+            <a class="product__sidebar-variant-btn-close" @click="deleteSelectedVariant(variant)">X</a>
           </div>
-          <div class="active-list__item-content">
-            <h5>{{ activeHighlight.highlightTitle }}</h5>
-          </div>
-          <a class="active-list__item-delete-btn" @click="deleteFeatureFromCart(activeHighlight)">X</a>
         </div>
-      </div>
 
-      <a class="product__sidebar-close" @click="closeSidebar">CLOSE</a>
+        <div class="active-list">
+          <div class="active-list__item" v-for="activeHighlight in activeHighlights" :key="activeHighlight.highlightID">
+            <div class="active-list__item-image-box">
+              <img :src="`${ activeHighlight.highlightImage }`" :alt="`${ activeHighlight.highlightImageAlt}`"/>
+            </div>
+            <div class="active-list__item-content">
+              <h5>{{ activeHighlight.highlightTitle }}</h5>
+            </div>
+            <a class="active-list__item-delete-btn" @click="deleteFeatureFromCart(activeHighlight)">X</a>
+          </div>
+        </div>
+
+        <a class="product__sidebar-close" @click="toggleSidebar">CLOSE</a>
     </aside>
+    </transition>
+
+    <transition name="slide">
+      <div class="product__modal-bcg" v-if="renderFeatures" @click="toggleSidebar"></div>
+    </transition>
 
   </div>
 </template>
@@ -190,11 +200,14 @@ export default {
   },
   methods: {
     // Add Highlighted Feature to Cart
+    // Close/Open Cart (Sidebar)
+    toggleSidebar () {
+      this.renderFeatures = !this.renderFeatures;
+    },
+
     addFeatureToCart (highlight) {
 
-      if (this.renderFeatures === false) {
-        this.renderFeatures = !this.renderFeatures;
-      }
+      this.toggleSidebar();
 
       if (this.activeHighlights.some((item) => item.highlightID === highlight.highlightID)) {
         return alert(`You've already added „${highlight.highlightTitle}"!`);
@@ -218,11 +231,6 @@ export default {
       }
     },
 
-    // Close/Open Cart (Sidebar)
-    closeSidebar () {
-      this.renderFeatures = !this.renderFeatures;
-    },
-
     // Update Product image based on Variant
     updateVariant(variantImage) {
       this.productImage = variantImage;
@@ -230,9 +238,8 @@ export default {
 
     // Select & Pass Variant to Cart
     selectVariant(variant) {
-      if (this.renderFeatures === false) {
-        this.renderFeatures = !this.renderFeatures;
-      }
+
+      this.toggleSidebar();
 
       if (this.selectedVariant.some((item) => item.variantID === variant.variantID)) {
         return alert(`Car with color ${variant.variantColor} is already in Cart!`);
