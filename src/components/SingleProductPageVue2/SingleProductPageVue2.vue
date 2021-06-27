@@ -58,8 +58,10 @@
 
       <div class="product__sidebar-variant" v-if="selectedVariant" v-for="variant in selectedVariant" :key="selectedVariant.variantID">
         <img class="product__sidebar-variant-img" :src="`${variant.variantImage}`" alt="">
-        <p class="product__sidebar-variant-name">{{ variant.variantColor }}</p>
-        <a class="product__sidebar-variant-btn-close" @click="deleteSelectedVariant(variant)">X</a>
+        <div class="product__sidebar-variant-content">
+          <p class="product__sidebar-variant-name">{{ variant.variantColor }}</p>
+          <a class="product__sidebar-variant-btn-close" @click="deleteSelectedVariant(variant)">X</a>
+        </div>
       </div>
 
       <div class="active-list">

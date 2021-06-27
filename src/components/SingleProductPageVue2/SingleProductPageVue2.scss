@@ -173,17 +173,15 @@
     position: fixed;
     display: flex;
     flex-flow: column wrap;
-    max-width: 300px;
+    max-width: 350px;
     width: 100%;
-    min-height: 100px;
-    height: 85vh;
+    height: 100vh;
     right: 0;
     top: 0;
-    margin-top: 50px;
-    margin-bottom: 150px;
     background: $dark;
     color: $white;
     padding: 1rem 1rem 3rem 1rem;
+    z-index: 1;
   }
 
   &__sidebar-counter {
@@ -192,21 +190,20 @@
     left: 0;
     height: 50px;
     width: 50px;
-    margin: -1rem 0 0 -1rem;
+    margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     font-family: 'Open Sans', sans-serif;
     background: $green;
-    z-index: 9;
+    z-index: 2;
   }
 
   /* Selected Variant Styling */
   &__sidebar-variant {
     height: auto;
     width: 100%;
-    padding: 2rem 0 1rem 0;
-    border-bottom: 1px solid $white;
+    padding: 3rem 0 0 0;
     position: relative;
   }
 
@@ -214,12 +211,19 @@
 
   }
 
+  &__sidebar-variant-content {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0 0 0;
+    min-height: 50px;
+  }
+
   &__sidebar-variant-btn-close {
-    position: absolute;
-    right: 0;
     width: 20px;
-    height: 20%;
-    padding: 0.5rem;
+    height: 100%;
+    padding: 1rem 0.3rem 1rem 0.3rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -230,7 +234,7 @@
   .active-list {
     display: flex;
     flex-flow: column nowrap;
-    padding: 1rem 0 0 0;
+    padding: 3rem 0 0 0;
 
     &__item{
       display: flex;
@@ -254,17 +258,17 @@
     &__item-content {
       font-size: 0.9rem;
       display: flex;
-      justify-content: center;
+      flex-flow: row nowrap;
+      justify-content: space-between;
       align-items: center;
+      height: 100%;
+      width: 100%;
       padding: 0 0 0 0.5rem;
     }
 
     &__item-delete-btn {
-      position: absolute;
-      right: 0;
-      top: 11px;
-      height: 70%;
-      width: 10%;
+      height: 100%;
+      width: 50px;
       padding: 0;
       margin: 0;
       display: flex;
@@ -279,18 +283,17 @@
 
   &__sidebar-close {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    margin: 0 0 -1rem -1rem;
+    bottom: 62px;
+    right: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     font-family: 'Open Sans', sans-serif;
-    width: 100px;
-    height: 50px;
+    width: 100%;
+    height: 100px;
     background: $aquamarine;
     color: $white;
-    z-index: 9;
+    z-index: 2;
     cursor: pointer;
   }
 }
