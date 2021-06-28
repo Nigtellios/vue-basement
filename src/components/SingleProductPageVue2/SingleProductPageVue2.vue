@@ -5,7 +5,7 @@
       <div class="product__column">
         <div class="product__column-transition-box">
           <transition name="fade" mode="out-in">
-            <img class="product__image" :src="`${productImage}`" :key="productImage" alt="Picture of Tesla Model X" />
+            <img class="product__image" :src="`${variantImage}`" :alt="`${variantImageAlt}`" :key="variantImage" />
           </transition>
         </div>
       </div>
@@ -16,12 +16,18 @@
           <p class="product__description">{{ productDescription }}</p>
           <p class="product__description">Order availability status:</p>
 
-          <span v-if="stockAmount > 10" class="availability available">Available!</span>
-          <span v-else-if="stockAmount <= 10 && stockAmount > 0" class="availability hurry-up">Hurry up!</span>
-          <span v-else class="availability unavailable">Currently unavailable!</span>
+          <div v-if="inStock >= stockAlerts.minimumAvailable" class="availability available">
+            <p>Available!</p>
+          </div>
+          <div v-else-if="inStock <= stockAlerts.low && inStock > stockAlerts.unavailable" class="availability hurry-up">
+            <p>Hurry up!</p>
+          </div>
+          <div v-else class="availability unavailable">
+            <p>Currently unavailable!</p>
+          </div>
 
           <div class="variants">
-            <div class="variants__item" @mouseover="updateVariant(variant.variantImage)" @click="selectVariant(variant)" v-for="variant in carVariants" :key="carVariants.variantID">
+            <div class="variants__item" @mouseover="updateProduct(index)" @click="selectVariant(variant)" v-for="(variant, index) in carVariants" :key="carVariants.variantID">
               <div class="variants__item-icon" :style="{ background: variant.variantColorCode }"></div>
               <div class="variants__item-heading">{{ variant.variantColor }}</div>
             </div>
@@ -59,10 +65,10 @@
 
     <transition name="fade">
       <aside class="product__sidebar" v-if="renderFeatures">
-        <span class="product__sidebar-counter" v-if="pickedFeatureAmount > 0">{{ pickedFeatureAmount }}</span>
+        <span class="product__sidebar-counter" v-if="featureCounter > 0">{{ featureCounter }}</span>
 
-        <div class="product__sidebar-variant" v-if="selectedVariant" v-for="variant in selectedVariant" :key="selectedVariant.variantID">
-          <img class="product__sidebar-variant-img" :src="`${variant.variantImage}`" alt="">
+        <div class="product__sidebar-variant" v-if="selectedVariant" v-for="(variant, index) in selectedVariant" :key="selectedVariant.variantID">
+          <img class="product__sidebar-variant-img" :src="`${variant.variantImage}`" :alt="`${variant.variantImage}`">
           <div class="product__sidebar-variant-content">
             <p class="product__sidebar-variant-name">{{ variant.variantColor }}</p>
             <a class="product__sidebar-variant-btn-close" @click="deleteSelectedVariant(variant)">X</a>
@@ -102,12 +108,8 @@ export default {
       productName: 'Tesla Model X',
       productUnderTag: 'Plaid',
       productDescription: 'Long Range and Plaid platforms unite powertrain and battery technologies for unrivaled performance, range and efficiency. New module and pack thermal architecture allows faster charging and gives you more power and endurance in all conditions.',
-      productImage: '../../assets/img/tesla-model-x-on-road.jpeg',
-      productImageAlt: 'Tesla Model X on The Road',
       productCtaHeading: 'Check more at Tesla website!',
       productCtaLink: 'https://www.tesla.com/modelx',
-      stockAmount: 8,
-      pickedFeatureAmount: 0,
       renderFeatures: false,
       carVariants: [
         {
@@ -115,30 +117,40 @@ export default {
           "variantColor": "White",
           "variantColorCode": "#F7F7F7",
           "variantImage": "../../assets/img/tesla-x-white.jpg",
+          "variantImageAlt": "White Tesla Model X",
+          "variantQuantity": 5
         },
         {
           "variantID": 1,
           "variantColor": "Silver",
           "variantColorCode": "#717171",
           "variantImage": "../../assets/img/tesla-x-silver.jpg",
+          "variantImageAlt": "Silver Tesla Model X",
+          "variantQuantity": 0
         },
         {
           "variantID": 2,
           "variantColor": "Blue",
           "variantColorCode": "#0D47AC",
           "variantImage": "../../assets/img/tesla-x-blue.jpg",
+          "variantImageAlt": "Blue Tesla Model X",
+          "variantQuantity": 6
         },
         {
           "variantID": 4,
           "variantColor": "Red",
           "variantColorCode": "#CF0001",
           "variantImage": "../../assets/img/tesla-x-red.jpg",
+          "variantImageAlt": "Red Tesla Model X",
+          "variantQuantity": 1
         },
         {
-          "variantID": 4,
+          "variantID": 5,
           "variantColor": "Black",
           "variantColorCode": "#000000",
           "variantImage": "../../assets/img/tesla-x-black.jpg",
+          "variantImageAlt": "Black Tesla Model X",
+          "variantQuantity": 10
         },
       ],
       featuresData: [
@@ -171,6 +183,11 @@ export default {
             "featureDescription": "Peak Power"
           }
       ],
+      stockAlerts: {
+        'unavailable': 0,
+        'low': 5,
+        'minimumAvailable': 5
+      },
       highlightsData: [
         {
           "highlightID": "0",
@@ -195,6 +212,7 @@ export default {
         }
       ],
       selectedVariant: [],
+      selectedVariantID: 0,
       activeHighlights: [],
     }
   },
@@ -213,8 +231,6 @@ export default {
         return alert(`You've already added „${highlight.highlightTitle}"!`);
       } else {
         this.activeHighlights.push(highlight);
-        // Refresh Counter
-        this.pickedFeatureAmount = this.activeHighlights.length;
       }
     },
 
@@ -224,36 +240,34 @@ export default {
 
       if (this.activeHighlights.some((item) => item.highlightID === highlight.highlightID)) {
         this.activeHighlights.splice(indexOf, 1);
-        //Refresh Counter
-        this.pickedFeatureAmount = this.activeHighlights.length;
       } else {
         alert(`Item with ID ${highlight.highlightID} does not exist!`);
       }
     },
 
-    // Update Product image based on Variant
-    updateVariant(variantImage) {
-      this.productImage = variantImage;
+    updateProduct(index) {
+      this.selectedVariantID = index;
     },
 
     // Select & Pass Variant to Cart
     selectVariant(variant) {
-
       this.toggleSidebar();
-
       if (this.selectedVariant.some((item) => item.variantID === variant.variantID)) {
         return alert(`Car with color ${variant.variantColor} is already in Cart!`);
       } else if (this.selectedVariant.length >= 1) {
         return alert(`You can select only one variant per order!`);
+      } else if (variant.variantQuantity <= 0) {
+        this.renderFeatures = false;
+        return alert(`We're sorry, this variant is out of stock.`);
       } else {
         this.selectedVariant.push(variant);
+        console.log(this.selectedVariant.variantQuantity)
       }
     },
 
     // Delete Selected Variant from Card
     deleteSelectedVariant(variant) {
       let indexOf = this.selectedVariant.indexOf(variant);
-
       if (this.selectedVariant.some((item) => item.variantID === variant.variantID)) {
         this.selectedVariant.splice(indexOf, 1);
       } else {
@@ -268,6 +282,20 @@ export default {
      getIconURL(icon) {
        return require('../../assets/icons/' + icon.iconURL)
      }, */
+  },
+  computed: {
+    featureCounter() {
+      return this.activeHighlights.length;
+    },
+    variantImage() {
+      return this.carVariants[this.selectedVariantID].variantImage;
+    },
+    variantImageAlt() {
+      return this.carVariants[this.selectedVariantID].variantImageAlt;
+    },
+    inStock() {
+      return this.carVariants[this.selectedVariantID].variantQuantity;
+    }
   },
 }
 </script>
