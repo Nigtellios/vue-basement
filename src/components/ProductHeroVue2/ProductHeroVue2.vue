@@ -3,7 +3,7 @@
     <div class="product__column">
       <div class="product__column-transition-box">
         <transition name="fade" mode="out-in">
-          <img class="product__image" :src="`${image}`" :alt="`${imageAlt}`" :key="image" />
+          <img class="product__image" :src="`${variantImage}`" :alt="`${variantImageAlt}`" :key="variantImage" />
         </transition>
       </div>
     </div>
@@ -78,6 +78,8 @@ export default {
       type: Array,
       required: true
     },
+
+    /* Computed */
     variantImage: {
       required: true
     },
@@ -89,28 +91,22 @@ export default {
     },
   },
   data() {
+    return {
 
+    }
   },
   methods: {
     update(index){
       this.$emit('updateProduct', index);
-      console.log('EMITED');
+      console.log(index);
     },
     select(variant){
       this.$emit('selectVariant', variant);
-      console.log('EMITED');
+      console.log(variant);
     },
   },
   computed: {
-    image() {
-      this.$emit('variantImage');
-    },
-    imageAlt() {
-      this.$emit('variantImageAlt') ;
-    },
-    isInStock() {
-      this.$emit('inStock');
-    }
+
   },
 }
 </script>

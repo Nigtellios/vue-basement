@@ -16,9 +16,7 @@
         :in-stock="inStock"
         @update="updateProduct"
         @select="selectVariant"
-        :image="variantImage"
-        :imageAlt="variantImageAlt"
-        :isInStock="inStock"
+
     />
 
 <!--    <product-features-vue2-->
