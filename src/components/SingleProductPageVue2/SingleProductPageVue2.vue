@@ -9,7 +9,6 @@
         :car-variants="carVariants"
         :stock-alerts="stockAlerts"
         :selected-variant="selectedVariant"
-        :selected-variant-i-d="selectedVariantID"
         :in-stock="inStock"
         :variant-image="variantImage"
         :variant-image-alt="variantImageAlt"
@@ -40,7 +39,11 @@
     </transition>
 
     <transition name="slide">
-      <div class="product__modal-bcg" v-if="renderFeatures" @click="toggleSidebar"></div>
+      <div
+          class="product__modal-bcg"
+          v-if="renderFeatures"
+          @click="toggleSidebar"
+      ></div>
     </transition>
 
   </div>
@@ -223,7 +226,6 @@ export default {
         alert(`Item with ID ${highlight.highlightID} does not exist!`);
       }
     },
-
 
     // Delete Selected Variant from Card
     deleteSelectedVariant(variant) {
