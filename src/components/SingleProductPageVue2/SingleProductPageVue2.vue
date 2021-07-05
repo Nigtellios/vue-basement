@@ -1,95 +1,38 @@
 <template>
   <div class="product">
 
-    <section class="product__hero">
-      <div class="product__column">
-        <div class="product__column-transition-box">
-          <transition name="fade" mode="out-in">
-            <img class="product__image" :src="`${variantImage}`" :alt="`${variantImageAlt}`" :key="variantImage" />
-          </transition>
-        </div>
-      </div>
-      <div class="product__column">
-        <h1 class="product__heading">{{ productName }}</h1>
-        <p class="product__under-tag">{{ productUnderTag }}</p>
-        <div class="product__column-description-box">
-          <p class="product__description">{{ productDescription }}</p>
-          <p class="product__description">Order availability status:</p>
+    <product-hero-vue2
+        :product-name="productName"
+        :product-under-tag="productUnderTag"
+        :product-description="productDescription"
+        :render-features="renderFeatures"
+        :car-variants="carVariants"
+        :stock-alerts="stockAlerts"
+        :selected-variant="selectedVariant"
+        :selected-variant-i-d="selectedVariantID"
+        :in-stock="inStock"
+        :variant-image="variantImage"
+        :variant-image-alt="variantImageAlt"
+        @updateProduct="updateProduct"
+        @selectVariant="selectVariant"
+    />
 
-          <div v-if="inStock >= stockAlerts.minimumAvailable" class="availability available">
-            <p>Available!</p>
-          </div>
-          <div v-else-if="inStock <= stockAlerts.low && inStock > stockAlerts.unavailable" class="availability hurry-up">
-            <p>Hurry up!</p>
-          </div>
-          <div v-else class="availability unavailable">
-            <p>Currently unavailable!</p>
-          </div>
+<!--    <product-features-vue2-->
+<!--        :product-features-data="productFeaturesData"-->
+<!--    />-->
 
-          <div class="variants">
-            <div class="variants__item" @mouseover="updateProduct(index)" @click="selectVariant(variant)" v-for="(variant, index) in carVariants" :key="carVariants.variantID">
-              <div class="variants__item-icon" :style="{ background: variant.variantColorCode }"></div>
-              <div class="variants__item-heading">{{ variant.variantColor }}</div>
-            </div>
-          </div>
+<!--    <product-highlights-vue2-->
+<!--        :highlights-data="highlightsData"-->
+<!--        :active-highlights="activeHighlights"-->
+<!--    />-->
 
-          <a :href="productCtaLink" target="_blank"><p class="product__description-cta">{{ productCtaHeading }}</p></a>
-        </div>
-      </div>
-    </section>
-
-    <section class="product__features">
-      <div class="product__features-item" v-for="feature in featuresData" :key="feature.featureID">
-        <img class="product__features-icon" :src="`${feature.iconURL}`" :alt="`${feature.iconAlt}`"/>
-        <div class="product__features-content">
-          <h4 class="product__features-heading">{{ feature.featureName }}</h4>
-          <p>{{ feature.featureDescription }}</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="product__highlights">
-      <div class="product__highlights-row" v-for="highlight in highlightsData" :key="highlight.highlightID">
-        <div class="product__highlights-column">
-          <img class="product__highlights-image" :src="`${highlight.highlightImage}`" :alt="`${highlight.highlightImageAlt}`"/>
-        </div>
-        <div class="product__highlights-column">
-          <div class="product__highlights-content">
-            <h5 class="product__highlights-heading">{{ highlight.highlightTitle }}</h5>
-            <p class="product__highlights-p">{{ highlight.highlightDescription }}</p>
-            <a class="product__highlights-btn" @click="addFeatureToCart(highlight)"><p class="cta">Add this feature</p></a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <transition name="fade">
-      <aside class="product__sidebar" v-if="renderFeatures">
-        <span class="product__sidebar-counter" v-if="featureCounter > 0">{{ featureCounter }}</span>
-
-        <div class="product__sidebar-variant" v-if="selectedVariant" v-for="(variant, index) in selectedVariant" :key="selectedVariant.variantID">
-          <img class="product__sidebar-variant-img" :src="`${variant.variantImage}`" :alt="`${variant.variantImage}`">
-          <div class="product__sidebar-variant-content">
-            <p class="product__sidebar-variant-name">{{ variant.variantColor }}</p>
-            <a class="product__sidebar-variant-btn-close" @click="deleteSelectedVariant(variant)">X</a>
-          </div>
-        </div>
-
-        <div class="active-list">
-          <div class="active-list__item" v-for="activeHighlight in activeHighlights" :key="activeHighlight.highlightID">
-            <div class="active-list__item-image-box">
-              <img :src="`${ activeHighlight.highlightImage }`" :alt="`${ activeHighlight.highlightImageAlt}`"/>
-            </div>
-            <div class="active-list__item-content">
-              <h5>{{ activeHighlight.highlightTitle }}</h5>
-            </div>
-            <a class="active-list__item-delete-btn" @click="deleteFeatureFromCart(activeHighlight)">X</a>
-          </div>
-        </div>
-
-        <a class="product__sidebar-close" @click="toggleSidebar">CLOSE</a>
-    </aside>
-    </transition>
+<!--    <transition name="fade">-->
+<!--      <SidebarVue2-->
+<!--          :render-features="renderFeatures"-->
+<!--          :active-highlights="activeHighlights"-->
+<!--          :selected-variant="selectedVariant"-->
+<!--      />-->
+<!--    </transition>-->
 
     <transition name="slide">
       <div class="product__modal-bcg" v-if="renderFeatures" @click="toggleSidebar"></div>
@@ -99,8 +42,19 @@
 </template>
 
 <script>
+import ProductHeroVue2 from "@/components/ProductHeroVue2/ProductHeroVue2";
+import ProductFeaturesVue2 from "@/components/ProductFeaturesVue2/ProductFeaturesVue2";
+import ProductHighlightsVue2 from "@/components/ProductHighlightsVue2/ProductHighlightsVue2";
+import SidebarVue2 from "@/components/SidebarVue2/SidebarVue2";
+
 export default {
   name: 'SingleProductPageVue2',
+  components: {
+    SidebarVue2,
+    ProductHeroVue2,
+    ProductFeaturesVue2,
+    ProductHighlightsVue2,
+  },
   props: {
   },
   data() {
@@ -137,7 +91,7 @@ export default {
           "variantQuantity": 6
         },
         {
-          "variantID": 4,
+          "variantID": 3,
           "variantColor": "Red",
           "variantColorCode": "#CF0001",
           "variantImage": "../../assets/img/tesla-x-red.jpg",
@@ -145,7 +99,7 @@ export default {
           "variantQuantity": 1
         },
         {
-          "variantID": 5,
+          "variantID": 4,
           "variantColor": "Black",
           "variantColorCode": "#000000",
           "variantImage": "../../assets/img/tesla-x-black.jpg",
@@ -153,35 +107,35 @@ export default {
           "variantQuantity": 10
         },
       ],
-      featuresData: [
-          {
-            "featureID": "0",
-            "iconURL": "../../assets/icons/range.svg",
-            "iconAlt": "High range of vehicle",
-            "featureName": "Range",
-            "featureDescription": "340 Miles"
-          },
-          {
-            "featureID": "1",
-            "iconURL": "../../assets/icons/25smph.svg",
-            "iconAlt": "in 2.5s from 0 to 60 mph",
-            "featureName": "2,5s",
-            "featureDescription": "0-60 mph*"
-          },
-          {
-            "featureID": "2",
-            "iconURL": "../../assets/icons/14mile.svg",
-            "iconAlt": "in 9.9s at 1/4 Mile distance",
-            "featureName": "9.9s",
-            "featureDescription": "1/4 Mile"
-          },
-          {
-            "featureID": "3",
-            "iconURL": "../../assets/icons/peakpower.svg",
-            "iconAlt": "1020hp peak power",
-            "featureName": "1,020hp",
-            "featureDescription": "Peak Power"
-          }
+      productFeaturesData: [
+        {
+          "featureID": "0",
+          "iconURL": "../../assets/icons/range.svg",
+          "iconAlt": "High range of vehicle",
+          "featureName": "Range",
+          "featureDescription": "340 Miles"
+        },
+        {
+          "featureID": "1",
+          "iconURL": "../../assets/icons/25smph.svg",
+          "iconAlt": "in 2.5s from 0 to 60 mph",
+          "featureName": "2,5s",
+          "featureDescription": "0-60 mph*"
+        },
+        {
+          "featureID": "2",
+          "iconURL": "../../assets/icons/14mile.svg",
+          "iconAlt": "in 9.9s at 1/4 Mile distance",
+          "featureName": "9.9s",
+          "featureDescription": "1/4 Mile"
+        },
+        {
+          "featureID": "3",
+          "iconURL": "../../assets/icons/peakpower.svg",
+          "iconAlt": "1020hp peak power",
+          "featureName": "1,020hp",
+          "featureDescription": "Peak Power"
+        }
       ],
       stockAlerts: {
         'unavailable': 0,
@@ -212,8 +166,8 @@ export default {
         }
       ],
       selectedVariant: [],
-      selectedVariantID: 0,
       activeHighlights: [],
+      selectedVariantID: 0,
     }
   },
   methods: {
@@ -223,10 +177,30 @@ export default {
       this.renderFeatures = !this.renderFeatures;
     },
 
-    addFeatureToCart (highlight) {
+    updateProduct(index) {
+      console.log(index);
+      this.selectedVariantID = index;
+    },
 
+    // Select & Pass Variant to Cart
+    selectVariant(variant) {
       this.toggleSidebar();
+      if (this.selectedVariant.some((item) => item.variantID === variant.variantID)) {
+        this.renderFeatures = false;
+        return alert(`Car with color ${variant.variantColor} is already in Cart!`);
+      } else if (this.selectedVariant.length >= 1) {
+        return alert(`You can select only one variant per order!`);
+      } else if (variant.variantQuantity <= 0) {
+        this.renderFeatures = false;
+        return alert(`We're sorry, this variant is out of stock.`);
+      } else {
+        this.selectedVariant.push(variant);
+        console.log(this.selectedVariant.variantQuantity)
+      }
+    },
 
+    addFeatureToCart (highlight) {
+      this.toggleSidebar();
       if (this.activeHighlights.some((item) => item.highlightID === highlight.highlightID)) {
         return alert(`You've already added „${highlight.highlightTitle}"!`);
       } else {
@@ -245,25 +219,6 @@ export default {
       }
     },
 
-    updateProduct(index) {
-      this.selectedVariantID = index;
-    },
-
-    // Select & Pass Variant to Cart
-    selectVariant(variant) {
-      this.toggleSidebar();
-      if (this.selectedVariant.some((item) => item.variantID === variant.variantID)) {
-        return alert(`Car with color ${variant.variantColor} is already in Cart!`);
-      } else if (this.selectedVariant.length >= 1) {
-        return alert(`You can select only one variant per order!`);
-      } else if (variant.variantQuantity <= 0) {
-        this.renderFeatures = false;
-        return alert(`We're sorry, this variant is out of stock.`);
-      } else {
-        this.selectedVariant.push(variant);
-        console.log(this.selectedVariant.variantQuantity)
-      }
-    },
 
     // Delete Selected Variant from Card
     deleteSelectedVariant(variant) {
@@ -274,14 +229,6 @@ export default {
         alert(`Item with ID ${variant.variantID} does not exist!`);
       }
     }
-
-    // Webpack asset parsing workaround - If they are not in /public/
-    /* getPictureURL(picture) {
-       return require('../../assets/img/' + picture)
-     },
-     getIconURL(icon) {
-       return require('../../assets/icons/' + icon.iconURL)
-     }, */
   },
   computed: {
     featureCounter() {
