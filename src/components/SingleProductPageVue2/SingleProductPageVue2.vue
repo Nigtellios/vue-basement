@@ -17,22 +17,27 @@
         @selectVariant="selectVariant"
     />
 
-<!--    <product-features-vue2-->
-<!--        :product-features-data="productFeaturesData"-->
-<!--    />-->
+    <product-features-vue2
+        :product-features-data="productFeaturesData"
+    />
 
-<!--    <product-highlights-vue2-->
-<!--        :highlights-data="highlightsData"-->
-<!--        :active-highlights="activeHighlights"-->
-<!--    />-->
+    <product-highlights-vue2
+        :highlights-data="highlightsData"
+        :active-highlights="activeHighlights"
+        @addFeatureToCart="addFeatureToCart"
+    />
 
-<!--    <transition name="fade">-->
-<!--      <SidebarVue2-->
-<!--          :render-features="renderFeatures"-->
-<!--          :active-highlights="activeHighlights"-->
-<!--          :selected-variant="selectedVariant"-->
-<!--      />-->
-<!--    </transition>-->
+    <transition name="fade">
+      <SidebarVue2
+          :render-features="renderFeatures"
+          :active-highlights="activeHighlights"
+          :selected-variant="selectedVariant"
+          :feature-counter="featureCounter"
+          @toggleSidebar="toggleSidebar"
+          @deleteFeatureFromCart="deleteFeatureFromCart"
+          @deleteSelectedVariant="deleteSelectedVariant"
+      />
+    </transition>
 
     <transition name="slide">
       <div class="product__modal-bcg" v-if="renderFeatures" @click="toggleSidebar"></div>
@@ -173,7 +178,7 @@ export default {
   methods: {
     // Add Highlighted Feature to Cart
     // Close/Open Cart (Sidebar)
-    toggleSidebar () {
+    toggleSidebar() {
       this.renderFeatures = !this.renderFeatures;
     },
 
@@ -199,7 +204,7 @@ export default {
       }
     },
 
-    addFeatureToCart (highlight) {
+    addFeatureToCart(highlight) {
       this.toggleSidebar();
       if (this.activeHighlights.some((item) => item.highlightID === highlight.highlightID)) {
         return alert(`You've already added „${highlight.highlightTitle}"!`);
@@ -209,7 +214,7 @@ export default {
     },
 
     // Delete Highlighted Feature from Cart
-    deleteFeatureFromCart (highlight) {
+    deleteFeatureFromCart(highlight) {
       let indexOf = this.activeHighlights.indexOf(highlight);
 
       if (this.activeHighlights.some((item) => item.highlightID === highlight.highlightID)) {

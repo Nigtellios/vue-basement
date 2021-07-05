@@ -1,3 +1,5 @@
+<!-- This component is downloading Selected data from parent and rendering "Cart" -->
+
 <template>
   <aside class="product__sidebar" v-if="renderFeatures">
     <span class="product__sidebar-counter" v-if="featureCounter > 0">{{ featureCounter }}</span>
@@ -29,6 +31,7 @@
 export default {
   name: 'SidebarVue2',
   props: {
+    /* Data */
     renderFeatures: {
       type: Number,
       required: true
@@ -42,9 +45,21 @@ export default {
       required: true
     },
 
+    /* Computed */
+    featureCounter: {
+      required: true
+    },
   },
   methods: {
-
+    toggleSidebar() {
+      this.$emit('toggleSidebar');
+    },
+    deleteFeatureFromCart(highlight) {
+      this.$emit('deleteFeatureFromCart', highlight);
+    },
+    deleteSelectedVariant(variant) {
+      this.$emit('deleteSelectedVariant', variant);
+    }
   }
 }
 </script>

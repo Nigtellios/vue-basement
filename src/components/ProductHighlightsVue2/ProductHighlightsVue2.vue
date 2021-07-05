@@ -19,6 +19,7 @@
 export default {
   name: 'ProductHighlightsVue2',
   props: {
+    /* Data */
     highlightsData: {
       type: Array,
       required: true
@@ -27,10 +28,11 @@ export default {
       type: Array,
       required: true
     },
-
   },
   methods: {
-
+    addFeatureToCart(highlight) {
+      this.$emit('add-feature-to-cart', highlight);
+    }
   }
 }
 </script>
