@@ -17,9 +17,9 @@
         @selectVariant="selectVariant"
     />
 
-<!--    <product-features-vue2-->
-<!--        :product-features-data="productFeaturesData"-->
-<!--    />-->
+    <product-features-vue2
+        :product-features-data="productFeaturesData"
+    />
 
 <!--    <product-highlights-vue2-->
 <!--        :highlights-data="highlightsData"-->
