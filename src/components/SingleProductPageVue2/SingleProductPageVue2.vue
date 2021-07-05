@@ -1,8 +1,6 @@
 <template>
   <div class="product">
 
-    <div> DZIAłA? </div>
-
     <product-hero-vue2
         :product-name="productName"
         :product-under-tag="productUnderTag"
@@ -11,12 +9,12 @@
         :car-variants="carVariants"
         :stock-alerts="stockAlerts"
         :selected-variant="selectedVariant"
+        :selected-variant-i-d="selectedVariantID"
+        :in-stock="inStock"
         :variant-image="variantImage"
         :variant-image-alt="variantImageAlt"
-        :in-stock="inStock"
-        @update="updateProduct"
-        @select="selectVariant"
-
+        @updateProduct="updateProduct"
+        @selectVariant="selectVariant"
     />
 
 <!--    <product-features-vue2-->
@@ -93,7 +91,7 @@ export default {
           "variantQuantity": 6
         },
         {
-          "variantID": 4,
+          "variantID": 3,
           "variantColor": "Red",
           "variantColorCode": "#CF0001",
           "variantImage": "../../assets/img/tesla-x-red.jpg",
@@ -101,7 +99,7 @@ export default {
           "variantQuantity": 1
         },
         {
-          "variantID": 5,
+          "variantID": 4,
           "variantColor": "Black",
           "variantColorCode": "#000000",
           "variantImage": "../../assets/img/tesla-x-black.jpg",
@@ -180,6 +178,7 @@ export default {
     },
 
     updateProduct(index) {
+      console.log(index);
       this.selectedVariantID = index;
     },
 

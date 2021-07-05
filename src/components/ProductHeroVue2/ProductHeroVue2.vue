@@ -3,7 +3,7 @@
     <div class="product__column">
       <div class="product__column-transition-box">
         <transition name="fade" mode="out-in">
-          <img class="product__image" :src="`${variantImage}`" :alt="`${variantImageAlt}`" :key="variantImage" />
+          <img class="product__image" :src="variantImage" :alt="variantImageAlt" :key="variantImage" />
         </transition>
       </div>
     </div>
@@ -14,10 +14,10 @@
         <p class="product__description">{{ productDescription }}</p>
         <p class="product__description">Order availability status:</p>
 
-        <div v-if="isInStock >= stockAlerts.minimumAvailable" class="availability available">
+        <div v-if="inStock >= stockAlerts.minimumAvailable" class="availability available">
           <p>Available!</p>
         </div>
-        <div v-else-if="isInStock <= stockAlerts.low && isInStock > stockAlerts.unavailable" class="availability hurry-up">
+        <div v-else-if="inStock <= stockAlerts.low && inStock > stockAlerts.unavailable" class="availability hurry-up">
           <p>Hurry up!</p>
         </div>
         <div v-else class="availability unavailable">
@@ -25,7 +25,12 @@
         </div>
 
         <div class="variants">
-          <div class="variants__item" @mouseover="update(index)" @click="select(variant)" v-for="(variant, index) in carVariants" :key="carVariants.variantID">
+          <div 
+            class="variants__item" @mouseover="updateProduct(index)" 
+            @click="selectVariant(variant)" 
+            v-for="(variant, index) in carVariants" 
+            :key="variant.variantID"
+          >
             <div class="variants__item-icon" :style="{ background: variant.variantColorCode }"></div>
             <div class="variants__item-heading">{{ variant.variantColor }}</div>
           </div>
@@ -67,7 +72,7 @@ export default {
       required: true
     },
     carVariants: {
-      type: Array,
+      type: Object,
       required: true
     },
     stockAlerts: {
@@ -96,13 +101,14 @@ export default {
     }
   },
   methods: {
-    update(index){
+    updateProduct(index){
       this.$emit('updateProduct', index);
-      console.log(index);
+      //console.log("Index Value: " + index);
+      //console.log("Selected Variant ID: " + this.selectedVariantID);
     },
-    select(variant){
+    selectVariant(variant){
       this.$emit('selectVariant', variant);
-      console.log(variant);
+      console.log("Selected Variant Object: " + variant);
     },
   },
   computed: {
