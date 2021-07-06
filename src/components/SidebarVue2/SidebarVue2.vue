@@ -24,7 +24,7 @@
           {{ variant.variantColor }}
         </p>
         <a
-            class="product__sidebar-variant-btn-close"
+           class="product__sidebar-variant-btn-close"
            @click="deleteSelectedVariant(variant)"
         >
           X
