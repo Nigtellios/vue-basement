@@ -10,25 +10,26 @@
     </span>
     <div
         class="product__sidebar-variant"
-        v-if="selectedVariant"
         v-for="(variant, index) in selectedVariant"
         :key="selectedVariant.variantID"
     >
-      <img
-          class="product__sidebar-variant-img"
-          :src="`${variant.variantImage}`"
-          :alt="`${variant.variantImage}`"
-      >
-      <div class="product__sidebar-variant-content">
-        <p class="product__sidebar-variant-name">
-          {{ variant.variantColor }}
-        </p>
-        <a
-           class="product__sidebar-variant-btn-close"
-           @click="deleteSelectedVariant(variant)"
+      <div v-if="selectedVariant">
+        <img
+            class="product__sidebar-variant-img"
+            :src="`${variant.variantImage}`"
+            :alt="`${variant.variantImage}`"
         >
-          X
-        </a>
+        <div class="product__sidebar-variant-content">
+          <p class="product__sidebar-variant-name">
+            {{ variant.variantColor }}
+          </p>
+          <a
+              class="product__sidebar-variant-btn-close"
+              @click="deleteSelectedVariant(variant)"
+          >
+            X
+          </a>
+        </div>
       </div>
     </div>
 
