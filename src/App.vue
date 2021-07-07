@@ -1,22 +1,22 @@
 <template>
-  <single-product-page-vue2 />
+  <single-product-page />
 </template>
 
 <script>
-import SingleProductPageVue2 from './components/SingleProductPageVue2/SingleProductPageVue2.vue';
-import ProductHeroVue2 from './components/ProductHeroVue2/ProductHeroVue2.vue';
-import ProductFeaturesVue2 from './components/ProductFeaturesVue2/ProductFeaturesVue2.vue';
-import ProductHighlightsVue2 from './components/ProductHighlightsVue2/ProductHighlightsVue2.vue';
-import SidebarVue2 from "@/components/SidebarVue2/SidebarVue2.vue";
+import SingleProductPage from './components/SingleProductPage/SingleProductPage.vue';
+import ProductHero from './components/ProductHero/ProductHero.vue';
+import ProductFeatures from './components/ProductFeatures/ProductFeatures.vue';
+import ProductHighlights from './components/ProductHighlights/ProductHighlights.vue';
+import Sidebar from "@/components/Sidebar/Sidebar.vue";
 
 export default {
   name: 'App',
   components: {
-    SingleProductPageVue2,
-    ProductHeroVue2,
-    ProductFeaturesVue2,
-    ProductHighlightsVue2,
-    SidebarVue2,
+    SingleProductPage,
+    ProductHero,
+    ProductFeatures,
+    ProductHighlights,
+    Sidebar,
   },
 }
 </script>

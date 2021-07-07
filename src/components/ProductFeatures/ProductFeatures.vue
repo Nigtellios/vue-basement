@@ -24,7 +24,7 @@
 
 <script>
 export default {
-  name: 'ProductFeaturesVue2',
+  name: 'ProductFeatures',
   props: {
     productFeaturesData: {
       type: Array,
@@ -35,4 +35,4 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss" src="./ProductFeaturesVue2.scss" />
+<style lang="scss" src="./ProductFeatures.scss" />

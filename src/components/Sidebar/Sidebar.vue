@@ -69,7 +69,7 @@
 
 <script>
 export default {
-  name: 'SidebarVue2',
+  name: 'Sidebar',
   props: {
     /* Data */
     renderFeatures: {
@@ -105,4 +105,4 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss" src="./SidebarVue2.scss" />
+<style lang="scss" src="./Sidebar.scss" />

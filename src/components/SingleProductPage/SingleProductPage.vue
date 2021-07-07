@@ -1,7 +1,7 @@
 <template>
   <div class="product">
 
-    <product-hero-vue2
+    <product-hero
         :product-name="productName"
         :product-under-tag="productUnderTag"
         :product-description="productDescription"
@@ -16,18 +16,18 @@
         @selectVariant="selectVariant"
     />
 
-    <product-features-vue2
+    <product-features
         :product-features-data="productFeaturesData"
     />
 
-    <product-highlights-vue2
+    <product-highlights
         :highlights-data="highlightsData"
         :active-highlights="activeHighlights"
         @addFeatureToCart="addFeatureToCart"
     />
 
     <transition name="fade">
-      <SidebarVue2
+      <sidebar
           :render-features="renderFeatures"
           :active-highlights="activeHighlights"
           :selected-variant="selectedVariant"
@@ -50,18 +50,18 @@
 </template>
 
 <script>
-import ProductHeroVue2 from "@/components/ProductHeroVue2/ProductHeroVue2";
-import ProductFeaturesVue2 from "@/components/ProductFeaturesVue2/ProductFeaturesVue2";
-import ProductHighlightsVue2 from "@/components/ProductHighlightsVue2/ProductHighlightsVue2";
-import SidebarVue2 from "@/components/SidebarVue2/SidebarVue2";
+import ProductHero from "@/components/ProductHero/ProductHero";
+import ProductFeatures from "@/components/ProductFeatures/ProductFeatures";
+import ProductHighlights from "@/components/ProductHighlights/ProductHighlights";
+import Sidebar from "@/components/Sidebar/Sidebar";
 
 export default {
-  name: 'SingleProductPageVue2',
+  name: 'SingleProductPage',
   components: {
-    SidebarVue2,
-    ProductHeroVue2,
-    ProductFeaturesVue2,
-    ProductHighlightsVue2,
+    ProductHero,
+    ProductFeatures,
+    ProductHighlights,
+    Sidebar,
   },
   props: {
   },
@@ -255,4 +255,4 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss" src="./SingleProductPageVue2.scss" />
+<style lang="scss" src="./SingleProductPage.scss" />

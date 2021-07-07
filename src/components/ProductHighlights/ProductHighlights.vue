@@ -36,7 +36,7 @@
 
 <script>
 export default {
-  name: 'ProductHighlightsVue2',
+  name: 'ProductHighlights',
   props: {
     /* Data */
     highlightsData: {
@@ -57,4 +57,4 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss" src="./ProductHighlightsVue2.scss" />
+<style lang="scss" src="./ProductHighlights.scss" />
