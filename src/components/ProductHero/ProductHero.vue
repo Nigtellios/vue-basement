@@ -3,25 +3,46 @@
     <div class="product__column">
       <div class="product__column-transition-box">
         <transition name="fade" mode="out-in">
-          <img class="product__image" :src="variantImage" :alt="variantImageAlt" :key="variantImage" />
+          <img
+              class="product__image"
+              :src="variantImage"
+              :alt="variantImageAlt"
+              :key="variantImage"
+          />
         </transition>
       </div>
     </div>
     <div class="product__column">
-      <h1 class="product__heading">{{ productName }}</h1>
-      <p class="product__under-tag">{{ productUnderTag }}</p>
+      <h1 class="product__heading">
+        {{ productName }}
+      </h1>
+      <p class="product__under-tag">
+        {{ productUnderTag }}
+      </p>
       <div class="product__column-description-box">
-        <p class="product__description">{{ productDescription }}</p>
-        <p class="product__description">Order availability status:</p>
-
+        <p class="product__description">
+          {{ productDescription }}
+        </p>
+        <p class="product__description">
+          Order availability status:
+        </p>
         <div v-if="inStock >= stockAlerts.minimumAvailable" class="availability available">
-          <p>Available!</p>
+          <p>
+            Available!
+          </p>
         </div>
-        <div v-else-if="inStock <= stockAlerts.low && inStock > stockAlerts.unavailable" class="availability hurry-up">
-          <p>Hurry up!</p>
+        <div
+            v-else-if="inStock <= stockAlerts.low && inStock > stockAlerts.unavailable"
+            class="availability hurry-up"
+        >
+          <p>
+            Hurry up!
+          </p>
         </div>
         <div v-else class="availability unavailable">
-          <p>Currently unavailable!</p>
+          <p>
+            Currently unavailable!
+          </p>
         </div>
 
         <div class="variants">
@@ -31,12 +52,21 @@
             v-for="(variant, index) in carVariants" 
             :key="variant.variantID"
           >
-            <div class="variants__item-icon" :style="{ background: variant.variantColorCode }"></div>
-            <div class="variants__item-heading">{{ variant.variantColor }}</div>
+            <div
+                class="variants__item-icon"
+                :style="{ background: variant.variantColorCode }"
+            ></div>
+            <div class="variants__item-heading">
+              {{ variant.variantColor }}
+            </div>
           </div>
         </div>
 
-        <a :href="productCtaLink" target="_blank"><p class="product__description-cta">{{ productCtaHeading }}</p></a>
+        <a :href="productCtaLink" target="_blank">
+          <p class="product__description-cta">
+            {{ productCtaHeading }}
+          </p>
+        </a>
       </div>
     </div>
   </section>
@@ -44,7 +74,7 @@
 
 <script>
 export default {
-  name: 'ProductHeroVue2',
+  name: 'ProductHero',
   props: {
     /* Data */
     productName: {
@@ -118,4 +148,4 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss" src="./ProductHeroVue2.scss" />
+<style lang="scss" src="./ProductHero.scss" />
