@@ -1,6 +1,17 @@
 <template>
   <div class="product">
 
+    <product-hero
+        :product-name="productName"
+        :product-excerpt="productExcerpt"
+        :product-hero-img="productHeroImg"
+        :product-hero-img-alt="productHeroImgAlt"
+        :product-hero-cta="productHeroCta"
+        :product-hero-cta-scope="productHeroCtaScope"
+        :has-box="hasBox"
+        :box-color="boxColor"
+    />
+
     <product-info
         :product-name="productName"
         :product-under-tag="productUnderTag"
@@ -50,6 +61,7 @@
 </template>
 
 <script>
+import ProductHero from "@/components/ProductHero/ProductHero";
 import ProductInfo from "@/components/ProductInfo/ProductInfo";
 import ProductFeatures from "@/components/ProductFeatures/ProductFeatures";
 import ProductHighlights from "@/components/ProductHighlights/ProductHighlights";
@@ -58,6 +70,7 @@ import Sidebar from "@/components/Sidebar/Sidebar";
 export default {
   name: 'SingleProductPage',
   components: {
+    ProductHero,
     ProductInfo,
     ProductFeatures,
     ProductHighlights,
@@ -67,12 +80,26 @@ export default {
   },
   data() {
     return {
+      /* Product Hero */
       productName: 'Tesla Model X',
+      productExcerpt: 'Highest performing SUV ever built!',
+      productHeroImg: '../../assets/img/x',
+      productHeroImgAlt: 'Tesla Model X',
+      productHeroCta: 'ORDER NOW',
+      productHeroCtaScope: '#info',
+      hasBox: true,
+      boxColor: '#97B8DB',
+
+      /* Product Info */
       productUnderTag: 'Plaid',
       productDescription: 'Long Range and Plaid platforms unite powertrain and battery technologies for unrivaled performance, range and efficiency. New module and pack thermal architecture allows faster charging and gives you more power and endurance in all conditions.',
       productCtaHeading: 'Check more at Tesla website!',
       productCtaLink: 'https://www.tesla.com/modelx',
+
+      /* Page Functionality */
       renderFeatures: false,
+
+      /* Product Data */
       carVariants: [
         {
           "variantID": 0,
@@ -186,7 +213,6 @@ export default {
     },
 
     updateProduct(index) {
-      console.log(index);
       this.selectedVariantID = index;
     },
 

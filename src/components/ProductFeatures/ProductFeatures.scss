@@ -1,29 +1,27 @@
-.product {
-  /* Product Features */
-  &__features {
-    padding: 6rem 5rem 6rem 5rem;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-  }
+/* Product Features */
+.features {
+  padding: 6rem 5rem 6rem 5rem;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
 
-  &__features-item {
+  &__item {
     display: flex;
     flex-flow: row nowrap;
   }
 
-  &__features-icon {
+  &__icon {
     width: 1.5rem;
     height: auto;
   }
 
-  &__features-content{
+  &__content{
     display: flex;
     flex-flow: column nowrap;
     padding: 0 0 0 1.5rem;
   }
 
-  &__features-heading {
+  &__heading {
     font-weight: 600;
     font-size: 1.2rem;
     margin: 0 0 0.2rem 0;

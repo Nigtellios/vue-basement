@@ -1,27 +1,27 @@
 <template>
-  <section class="product__highlights">
+  <section class="highlights">
     <div
-        class="product__highlights-row"
+        class="highlights__row"
         v-for="highlight in highlightsData"
         :key="highlight.highlightID"
     >
-      <div class="product__highlights-column">
+      <div class="highlights__column">
         <img
-            class="product__highlights-image"
+            class="highlights__image"
             :src="`${highlight.highlightImage}`"
             :alt="`${highlight.highlightImageAlt}`"
         />
       </div>
-      <div class="product__highlights-column">
-        <div class="product__highlights-content">
-          <h5 class="product__highlights-heading">
+      <div class="highlights__column">
+        <div class="highlights__content">
+          <h5 class="highlights__heading">
             {{ highlight.highlightTitle }}
           </h5>
-          <p class="product__highlights-p">
+          <p class="highlights__p">
             {{ highlight.highlightDescription }}
           </p>
           <a
-              class="product__highlights-btn"
+              class="highlights__btn"
               @click="addFeatureToCart(highlight)"
           >
             <p class="cta">

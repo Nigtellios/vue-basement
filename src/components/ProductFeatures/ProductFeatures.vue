@@ -1,17 +1,17 @@
 <template>
-  <section class="product__features">
+  <section class="features">
     <div
-        class="product__features-item"
+        class="features__item"
         v-for="feature in productFeaturesData"
         :key="feature.featureID"
     >
       <img
-          class="product__features-icon"
+          class="features__icon"
           :src="`${feature.iconURL}`"
           :alt="`${feature.iconAlt}`"
       />
-      <div class="product__features-content">
-        <h4 class="product__features-heading">
+      <div class="features__content">
+        <h4 class="features__heading">
           {{ feature.featureName }}
         </h4>
         <p>

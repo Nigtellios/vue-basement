@@ -1,30 +1,30 @@
 <!-- This component is downloading Selected data from parent and rendering "Cart" -->
 
 <template>
-  <aside class="product__sidebar" v-if="renderFeatures">
+  <aside class="sidebar" v-if="renderFeatures">
     <span
-        class="product__sidebar-counter"
+        class="sidebar__counter"
         v-if="featureCounter > 0"
     >
       {{ featureCounter }}
     </span>
     <div
-        class="product__sidebar-variant"
+        class="sidebar__variant"
         v-for="(variant, index) in selectedVariant"
         :key="selectedVariant.variantID"
     >
       <div v-if="selectedVariant">
         <img
-            class="product__sidebar-variant-img"
+            class="sidebar__variant-img"
             :src="`${variant.variantImage}`"
             :alt="`${variant.variantImage}`"
         >
-        <div class="product__sidebar-variant-content">
-          <p class="product__sidebar-variant-name">
+        <div class="sidebar__variant-content">
+          <p class="sidebar__variant-name">
             {{ variant.variantColor }}
           </p>
           <a
-              class="product__sidebar-variant-btn-close"
+              class="sidebar__variant-btn-close"
               @click="deleteSelectedVariant(variant)"
           >
             X
@@ -33,25 +33,25 @@
       </div>
     </div>
 
-    <div class="active-list">
+    <div class="sidebar__active-list">
       <div
-          class="active-list__item"
+          class="sidebar__active-list-item"
           v-for="activeHighlight in activeHighlights"
           :key="activeHighlight.highlightID"
       >
-        <div class="active-list__item-image-box">
+        <div class="sidebar__active-list-item-image-box">
           <img
               :src="`${ activeHighlight.highlightImage }`"
               :alt="`${ activeHighlight.highlightImageAlt}`"
           />
         </div>
-        <div class="active-list__item-content">
+        <div class="sidebar__active-list-item-content">
           <h5>
             {{ activeHighlight.highlightTitle }}
           </h5>
         </div>
         <a
-            class="active-list__item-delete-btn"
+            class="sidebar__active-list-item-delete-btn"
             @click="deleteFeatureFromCart(activeHighlight)"
         >
           X
@@ -60,7 +60,7 @@
     </div>
 
     <a
-        class="product__sidebar-close"
+        class="sidebar__close"
         @click="toggleSidebar"
     >
       CLOSE
