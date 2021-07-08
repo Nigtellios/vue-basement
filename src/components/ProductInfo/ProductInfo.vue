@@ -74,7 +74,7 @@
 
 <script>
 export default {
-  name: 'ProductHero',
+  name: 'ProductInfo',
   props: {
     /* Data */
     productName: {
@@ -148,4 +148,4 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss" src="./ProductHero.scss" />
+<style lang="scss" src="./ProductInfo.scss" />

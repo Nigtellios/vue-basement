@@ -1,7 +1,7 @@
 <template>
   <div class="product">
 
-    <product-hero
+    <product-info
         :product-name="productName"
         :product-under-tag="productUnderTag"
         :product-description="productDescription"
@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import ProductHero from "@/components/ProductHero/ProductHero";
+import ProductInfo from "@/components/ProductInfo/ProductInfo";
 import ProductFeatures from "@/components/ProductFeatures/ProductFeatures";
 import ProductHighlights from "@/components/ProductHighlights/ProductHighlights";
 import Sidebar from "@/components/Sidebar/Sidebar";
@@ -58,7 +58,7 @@ import Sidebar from "@/components/Sidebar/Sidebar";
 export default {
   name: 'SingleProductPage',
   components: {
-    ProductHero,
+    ProductInfo,
     ProductFeatures,
     ProductHighlights,
     Sidebar,
