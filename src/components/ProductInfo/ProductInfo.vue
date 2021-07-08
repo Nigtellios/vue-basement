@@ -1,5 +1,5 @@
 <template>
-  <section class="product__hero">
+  <section id="info" class="product__info">
     <div class="product__column">
       <div class="product__column-transition-box">
         <transition name="fade" mode="out-in">

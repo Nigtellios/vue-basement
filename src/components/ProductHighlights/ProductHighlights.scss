@@ -1,32 +1,30 @@
-.product {
-  /* Product Highlights */
-  &__highlights {
-    width: auto;
-    padding: 3rem 6rem 6rem 6rem;
-  }
+/* Product Highlights */
+.highlights {
+  width: auto;
+  padding: 3rem 6rem 6rem 6rem;
 
-  &__highlights-row {
+  &__row {
     width: 100%;
     display: flex;
     flex-flow: row wrap;
   }
 
-  &__highlights-row:nth-child(even) {
+  &__row:nth-child(even) {
     flex-flow: row-reverse wrap;
   }
 
-  &__highlights-column {
+  &__column {
     max-width: 100%;
     width: 50%;
     position: relative;
   }
 
-  &__highlights-image {
+  &__image {
     width: 100%;
     height: 100%;
   }
 
-  &__highlights-content {
+  &__content {
     width: 100%;
     height: 100%;
     display: flex;
@@ -35,17 +33,17 @@
     align-items: flex-start;
   }
 
-  &__highlights-heading {
+  &__heading {
     font-size: 1.2rem;
     font-weight: 600;
     padding: 0 5rem 0 5rem;
   }
 
-  &__highlights-p {
+  &__p {
     padding: 2rem 5rem 0 5rem;
   }
 
-  &__highlights-btn {
+  &__btn {
     display: block;
     text-transform: uppercase;
     margin: 2rem 5rem 0 5rem;
@@ -53,7 +51,7 @@
     border: 2px solid $dark;
   }
 
-  &__highlights-btn:hover {
+  &__btn:hover {
     cursor: pointer;
     transition: 0.1s linear;
     color: $white;
@@ -62,8 +60,8 @@
 }
 
 @media (max-width: $lg-screen) {
-  .product {
-    &__highlights-column {
+  .highlights {
+    &__column {
       width: 100%;
     }
   }
