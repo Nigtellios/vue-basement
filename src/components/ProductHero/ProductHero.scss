@@ -15,7 +15,6 @@
     position: absolute;
     top: 40%;
     z-index: -5;
-    object-fit: cover;
   }
 
   &__box-wrapper {
@@ -91,6 +90,8 @@
     }
   }
 }
+
+// OLD CSS CODE
 
 //#parallax {
 //  position: relative;

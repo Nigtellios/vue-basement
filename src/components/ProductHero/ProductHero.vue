@@ -72,36 +72,36 @@ export default {
   },
   data() {
     return {
-      // width: 1,
-      // height: 1,
-      // mousePosX: 0,
-      // mousePosY: 0,
+       /* width: 1,
+       height: 1,
+       mousePosX: 0,
+       mousePosY: 0, */
 
     }
   },
   mounted() {
-    // document.addEventListener('mousemove', this.parallaxMove);
+     // document.addEventListener('mousemove', this.parallaxMove);
   },
   destroyed() {
-    // document.removeEventListener('mousemove', this.parallaxMove)
+     // document.removeEventListener('mousemove', this.parallaxMove)
   },
   methods: {
 
     /* Old Parallax Function */
-    // parallaxMove(event) {
-    //   const element = document.querySelector("#parallax");
-    //
-    //   this.width = window.innerWidth/2;
-    //   this.height = window.innerHeight/2;
-    //   this.mousePosX = event.clientX;
-    //   this.mousePosY = event.clientY;
-    //
-    //   let firstLayer = `${30 - (this.mousePosX - this.width) * 0.05}% ${50 - (this.mousePosY - this.height) * 0.02}%`;
-    //   let secondLayer = `${50 - (this.mousePosX - this.width) * 0.02}% ${50 - (this.mousePosY - this.height) * 0.02}%`;
-    //   let thirdLayer = `${50 - (this.mousePosX - this.width) * 0.01}% ${140 - (this.mousePosY - this.height) * 0.01}%`;
-    //
-    //   element.style.backgroundPosition = `${thirdLayer}, ${secondLayer}, ${firstLayer}`;
-    // },
+     /*parallaxMove(event) {
+       const element = document.querySelector(".hero__box:after");
+
+       this.width = window.innerWidth/2;
+       this.height = window.innerHeight/2;
+       this.mousePosX = event.clientX;
+       this.mousePosY = event.clientY;
+
+       let firstLayer = `${30 - (this.mousePosX - this.width) * 0.05}% ${50 - (this.mousePosY - this.height) * 0.02}%`;
+       let secondLayer = `${50 - (this.mousePosX - this.width) * 0.02}% ${50 - (this.mousePosY - this.height) * 0.02}%`;
+       let thirdLayer = `${50 - (this.mousePosX - this.width) * 0.01}% ${140 - (this.mousePosY - this.height) * 0.01}%`;
+
+       element.style.backgroundPosition = `${thirdLayer}, ${secondLayer}, ${firstLayer}`;
+     },*/
   },
 }
 </script>
