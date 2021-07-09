@@ -82,8 +82,8 @@ export default {
     return {
       /* Product Hero */
       productName: 'Tesla Model X',
-      productExcerpt: 'Highest performing SUV ever built!',
-      productHeroImg: '../../assets/img/x',
+      productExcerpt: 'Highest performing SUV ever built',
+      productHeroImg: '../../assets/img/perf-x.png',
       productHeroImgAlt: 'Tesla Model X',
       productHeroCta: 'ORDER NOW',
       productHeroCtaScope: '#info',

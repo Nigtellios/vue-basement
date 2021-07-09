@@ -1,10 +1,10 @@
 <template>
-  <section id="info" class="product__info">
-    <div class="product__column">
-      <div class="product__column-transition-box">
+  <section id="info" class="info">
+    <div class="info__column">
+      <div class="info__column-transition-box">
         <transition name="fade" mode="out-in">
           <img
-              class="product__image"
+              class="info__image"
               :src="variantImage"
               :alt="variantImageAlt"
               :key="variantImage"
@@ -12,18 +12,18 @@
         </transition>
       </div>
     </div>
-    <div class="product__column">
-      <h1 class="product__heading">
+    <div class="info__column">
+      <h1 class="info__heading">
         {{ productName }}
       </h1>
-      <p class="product__under-tag">
+      <p class="info__under-tag">
         {{ productUnderTag }}
       </p>
-      <div class="product__column-description-box">
-        <p class="product__description">
+      <div class="info__column-description-box">
+        <p class="info__description">
           {{ productDescription }}
         </p>
-        <p class="product__description">
+        <p class="info__description">
           Order availability status:
         </p>
         <div v-if="inStock >= stockAlerts.minimumAvailable" class="availability available">
