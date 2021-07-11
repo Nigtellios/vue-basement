@@ -1,0 +1,63 @@
+.navigation {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+
+  &__logo {
+    padding: 2.5rem;
+  }
+
+  &__wrapper {
+
+  }
+
+  &__list {
+    display: flex;
+    flex-flow: row nowrap;
+    padding: 1.5rem
+  }
+
+  &__item {
+    padding: 1rem 2rem;
+  }
+
+  &__link {
+    text-decoration: none;
+    color: $dark;
+    text-transform: uppercase;
+  }
+
+  &__link-p {
+    font-weight: 500;
+    letter-spacing: 0.1rem;
+  }
+
+  &__shop {
+
+  }
+
+  &__shop-list {
+    display: flex;
+    flex-flow: row nowrap;
+  }
+
+  &__shop-list-item {
+    background: $dark;
+    color: $white;
+  }
+
+  &__shop-list-item-link {
+    width: auto;
+    height: auto;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__shop-list-item-icon {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

@@ -38,7 +38,7 @@
     />
 
     <transition name="fade">
-      <sidebar
+      <product-sidebar
           :render-features="renderFeatures"
           :active-highlights="activeHighlights"
           :selected-variant="selectedVariant"
@@ -65,7 +65,7 @@ import ProductHero from "@/components/ProductHero/ProductHero";
 import ProductInfo from "@/components/ProductInfo/ProductInfo";
 import ProductFeatures from "@/components/ProductFeatures/ProductFeatures";
 import ProductHighlights from "@/components/ProductHighlights/ProductHighlights";
-import Sidebar from "@/components/Sidebar/Sidebar";
+import ProductSidebar from "@/components/ProductSidebar/ProductSidebar";
 
 export default {
   name: 'SingleProductPage',
@@ -74,7 +74,7 @@ export default {
     ProductInfo,
     ProductFeatures,
     ProductHighlights,
-    Sidebar,
+    ProductSidebar,
   },
   props: {
   },
