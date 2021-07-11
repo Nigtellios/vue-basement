@@ -1,5 +1,8 @@
 <template>
-  <div id="parallax" class="hero">
+  <div
+      id="hero"
+      class="hero"
+  >
     <div class="hero__content">
       <img
           class="hero__img"

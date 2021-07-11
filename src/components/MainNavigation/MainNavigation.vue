@@ -46,7 +46,7 @@
             <div class="navigation__shop-list-item-icon">
               <img
                 :src="item.itemIcon"
-              />
+                alt=""/>
             </div>
           </a>
         </li>

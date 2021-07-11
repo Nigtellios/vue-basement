@@ -1,6 +1,13 @@
 <template>
   <footer class="footer">
-    <p>Here goes our FOOTER</p>
+    <div class="footer__copyright">
+      <div class="footer__copyright-info">
+        <p>All rights belongs to TESLA.</p>
+      </div>
+      <div class="footer__copyright-created">
+        <p>{{ currentDate() }}</p>
+      </div>
+    </div>
   </footer>
 </template>
 
@@ -8,18 +15,13 @@
 export default {
   name: 'MainFooter',
   props: {
-    navItems: {
-      type: Array,
-      required: true,
-    },
-  },
-  data() {
-    return {
 
-    }
   },
   methods: {
-
+    currentDate() {
+      const date = new Date();
+      return date.getFullYear();
+    },
   },
 }
 </script>

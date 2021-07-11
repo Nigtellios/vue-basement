@@ -1,5 +1,8 @@
 <template>
-  <section class="highlights">
+  <section
+      id="customize"
+      class="highlights"
+  >
     <div
         class="highlights__row"
         v-for="highlight in highlightsData"
