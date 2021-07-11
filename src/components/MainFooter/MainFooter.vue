@@ -8,7 +8,10 @@
 export default {
   name: 'MainFooter',
   props: {
-
+    navItems: {
+      type: Array,
+      required: true,
+    },
   },
   data() {
     return {

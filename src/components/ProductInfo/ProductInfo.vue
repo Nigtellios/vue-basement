@@ -47,7 +47,8 @@
 
         <div class="variants">
           <div 
-            class="variants__item" @mouseover="updateProduct(index)" 
+            class="variants__item"
+            @mouseover="updateProduct(index)"
             @click="selectVariant(variant)" 
             v-for="(variant, index) in carVariants" 
             :key="variant.variantID"

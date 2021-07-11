@@ -1,7 +1,14 @@
 <template>
-  <navigation />
-  <single-product-page />
-  <main-footer />
+  <main-navigation
+      :nav-items="navItems"
+      :shop-nav="shopNav"
+  />
+
+    <single-product-page />
+
+  <main-footer
+      :nav-items="navItems"
+  />
 </template>
 
 <script>
@@ -9,20 +16,64 @@ import SingleProductPage from './components/SingleProductPage/SingleProductPage.
 import ProductInfo from './components/ProductInfo/ProductInfo.vue';
 import ProductFeatures from './components/ProductFeatures/ProductFeatures.vue';
 import ProductHighlights from './components/ProductHighlights/ProductHighlights.vue';
-import Sidebar from "@/components/Sidebar/Sidebar.vue";
-import Navigation from "@/components/Navigation/Navigation";
+import ProductSidebar from "@/components/ProductSidebar/ProductSidebar.vue";
+import MainNavigation from "@/components/MainNavigation/MainNavigation";
 import MainFooter from "@/components/MainFooter/MainFooter";
 
 export default {
   name: 'App',
   components: {
     MainFooter,
-    Navigation,
+    MainNavigation,
     SingleProductPage,
     ProductInfo,
     ProductFeatures,
     ProductHighlights,
-    Sidebar,
+    ProductSidebar,
+  },
+  data() {
+    return {
+      websiteLogo: '../../assets/img/perf-x.png',
+      navItems: [
+        {
+          "itemID": 0,
+          "itemName": "Model X",
+          "itemRoute": "#hero",
+        },
+        {
+          "itemID": 1,
+          "itemName": "Features",
+          "itemRoute": "#features",
+        },
+        {
+          "itemID": 2,
+          "itemName": "Customize",
+          "itemRoute": "#customize",
+        },
+        {
+          "itemID": 3,
+          "itemName": "Order",
+          "itemRoute": "#order",
+        },
+      ],
+      shopNav: [
+        {
+          "itemID": 0,
+          "itemIcon": "../../assets/icons/account.svg",
+          "itemRoute": "#account",
+        },
+        {
+          "itemID": 1,
+          "itemIcon": "../../assets/icons/order.svg",
+          "itemRoute": "#order",
+        },
+        {
+          "itemID": 2,
+          "itemIcon": "../../assets/icons/cart.svg",
+          "itemRoute": "#sidebar",
+        },
+      ],
+    }
   },
 }
 </script>
