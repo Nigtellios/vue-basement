@@ -14,18 +14,31 @@
 
   &__list {
     display: flex;
-    flex-flow: row nowrap;
-    padding: 1.5rem
+    flex-flow: row wrap;
+    margin: 1rem 0 0 0;
   }
 
   &__item {
-    padding: 1rem 2rem;
+    border-bottom: 2px solid $white;
+    margin: 0 0.5rem;
+
+    &:hover {
+      transition: $main;
+      border-bottom: 2px solid $dark;
+    }
+
+    &:hover .navigation__link-p {
+      transition: $main;
+      font-weight: 600;
+    }
   }
 
   &__link {
     text-decoration: none;
     color: $dark;
     text-transform: uppercase;
+    display: block;
+    padding: 1.5rem;
   }
 
   &__link-p {
@@ -43,21 +56,36 @@
   }
 
   &__shop-list-item {
-    background: $dark;
-    color: $white;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    max-height: 6rem;
   }
 
   &__shop-list-item-link {
     width: auto;
     height: auto;
-    padding: 2rem;
+    background: $dark;
+    color: $white;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 2rem;
+
+    &:hover {
+      transition: $main;
+      background: $white;
+    }
+
+    &:hover .navigation__shop-list-item-icon {
+      filter: invert(1);
+    }
   }
 
   &__shop-list-item-icon {
     margin-left: auto;
     margin-right: auto;
+    max-width: 2rem;
+    max-height: 2rem;
   }
 }
