@@ -1,5 +1,8 @@
 <template>
-  <section class="features">
+  <section
+      id="features"
+      class="features"
+  >
     <div
         class="features__item"
         v-for="feature in productFeaturesData"
