@@ -57,6 +57,14 @@
       ></div>
     </transition>
 
+    <product-reviews
+        :product-reviews="productReviews"
+    />
+
+    <review-form
+        @review-submitted="addReview"
+    />
+
   </div>
 </template>
 
@@ -65,6 +73,8 @@ import ProductHero from "@/components/ProductHero/ProductHero";
 import ProductInfo from "@/components/ProductInfo/ProductInfo";
 import ProductFeatures from "@/components/ProductFeatures/ProductFeatures";
 import ProductHighlights from "@/components/ProductHighlights/ProductHighlights";
+import ProductReviews from "@/components/ProductReviews/ProductReviews";
+import ReviewForm from "@/components/ReviewForm/ReviewForm";
 import ProductSidebar from "@/components/ProductSidebar/ProductSidebar";
 
 export default {
@@ -74,6 +84,8 @@ export default {
     ProductInfo,
     ProductFeatures,
     ProductHighlights,
+    ProductReviews,
+    ReviewForm,
     ProductSidebar,
   },
   props: {
@@ -203,6 +215,9 @@ export default {
       selectedVariant: [],
       activeHighlights: [],
       selectedVariantID: 0,
+
+      /* Reviews */
+      productReviews: [],
     }
   },
   methods: {
@@ -261,7 +276,11 @@ export default {
       } else {
         alert(`Item with ID ${variant.variantID} does not exist!`);
       }
-    }
+    },
+
+    addReview(productReview) {
+      this.productReviews.push(productReview);
+    },
   },
   computed: {
     featureCounter() {
