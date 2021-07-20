@@ -1,5 +1,5 @@
 <template>
-  <section class="write-review">
+  <section class="write-review section--padding">
     <div class="write-review__box">
       <form
           class="write-review__form"

@@ -1,7 +1,7 @@
 <template>
   <section
       id="customize"
-      class="highlights"
+      class="highlights section--padding"
   >
     <div
         class="highlights__row"

@@ -1,5 +1,5 @@
 <template>
-  <section class="reviews">
+  <section class="reviews section--padding">
     <div class="reviews__box">
       <div
           class="single-item"
