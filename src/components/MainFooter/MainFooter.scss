@@ -1,0 +1,32 @@
+.footer {
+  padding: 5rem 5rem 5rem 5rem;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  border-top: 1px solid rgba(0, 0, 0, 0.03);
+
+  &__copyright {
+
+  }
+
+  &__copyright-created {
+
+  }
+
+  &--p {
+    line-height: 2rem;
+    text-align: center;
+  }
+
+  &--hyper {
+    font-weight: 600;
+    text-decoration: none;
+    color: $dark;
+
+    &:hover {
+      color: $aquamarine;
+      transition: $main;
+      cursor: pointer;
+    }
+  }
+}

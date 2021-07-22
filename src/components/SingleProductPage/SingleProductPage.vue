@@ -59,10 +59,13 @@
 
     <product-reviews
         :product-reviews="productReviews"
+        :validation-errors="validationErrors"
     />
 
     <review-form
-        @review-submitted="addReview"
+        :validation-errors="validationErrors"
+        :product-reviews="productReviews"
+        @addReview="addReview"
     />
 
   </div>
@@ -218,6 +221,9 @@ export default {
 
       /* Reviews */
       productReviews: [],
+
+      /* Validation */
+      validationErrors: [],
     }
   },
   methods: {

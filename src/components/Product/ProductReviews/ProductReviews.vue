@@ -1,10 +1,31 @@
 <template>
   <section class="reviews section--padding">
     <div class="reviews__box">
+      <p v-if="!productReviews.length">
+        There are no any reviews yet!
+      </p>
+      <div
+          class="reviews__handlers"
+          v-if="validationErrors.length"
+      >
+        <div
+            class="reviews__handlers-box"
+            v-for="error in validationErrors"
+            :key="error.heading"
+        >
+          <h4 class="reviews__handlers-heading">
+            {{ error.heading }}
+          </h4>
+          <p class="reviews__handlers-content">
+            {{ error.content }}
+          </p>
+        </div>
+
+      </div>
       <div
           class="single-item"
           v-for="review in productReviews"
-          :key="review.name"
+          :key="review.id"
       >
         <div class="single-item__profile-picture">
           <img src="" alt="" />
@@ -33,14 +54,10 @@ export default {
       type: Array,
       required: true,
     },
-  },
-  data() {
-    return {
-
-    }
-  },
-  methods: {
-
+    validationErrors: {
+      type: Array,
+      required: true,
+    },
   },
 }
 </script>

@@ -2,10 +2,30 @@
   <footer class="footer">
     <div class="footer__copyright">
       <div class="footer__copyright-info">
-        <p>All rights belongs to TESLA.</p>
+        <p class="footer--p">
+          Training Website. All rights belongs to
+          <a
+              class="footer--hyper"
+              href="https://www.tesla.com/"
+              target="_blank"
+          >
+            TESLA.
+          </a>
+        </p>
       </div>
       <div class="footer__copyright-created">
-        <p>{{ currentDate() }}</p>
+        <p class="footer--p">
+          {{ currentDate() }}, made with
+          <span class="love">love</span>
+          by
+          <a
+              class="footer--hyper"
+              href="https://jakubkowalski.dev/"
+              target="_blank"
+          >
+            jakubkowalski.dev
+          </a>
+        </p>
       </div>
     </div>
   </footer>
@@ -14,9 +34,6 @@
 <script>
 export default {
   name: 'MainFooter',
-  props: {
-
-  },
   methods: {
     currentDate() {
       const date = new Date();
