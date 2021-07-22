@@ -5,24 +5,6 @@
         There are no any reviews yet!
       </p>
       <div
-          class="reviews__handlers"
-          v-if="validationErrors.length"
-      >
-        <div
-            class="reviews__handlers-box"
-            v-for="error in validationErrors"
-            :key="error.heading"
-        >
-          <h4 class="reviews__handlers-heading">
-            {{ error.heading }}
-          </h4>
-          <p class="reviews__handlers-content">
-            {{ error.content }}
-          </p>
-        </div>
-
-      </div>
-      <div
           class="single-item"
           v-for="review in productReviews"
           :key="review.id"
@@ -51,10 +33,6 @@ export default {
   name: 'ProductReviews',
   props: {
     productReviews: {
-      type: Array,
-      required: true,
-    },
-    validationErrors: {
       type: Array,
       required: true,
     },

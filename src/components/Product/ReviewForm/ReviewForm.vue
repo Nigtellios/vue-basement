@@ -1,5 +1,24 @@
 <template>
   <section class="write-review section--padding">
+
+    <div
+        class="reviews__handlers"
+        v-if="validationErrors.length"
+    >
+      <div
+          class="reviews__handlers-box"
+          v-for="error in validationErrors"
+          :key="error.heading"
+      >
+        <h4 class="reviews__handlers-heading">
+          {{ error.heading }}
+        </h4>
+        <p class="reviews__handlers-content">
+          {{ error.content }}
+        </p>
+      </div>
+
+    </div>
     <div class="write-review__box">
       <form
           class="write-review__form"
@@ -98,10 +117,28 @@ export default {
         }
 
         // Push Error Messages after Checking length every time when ELSE occurs
-        if (!this.userName) this.validationErrors.push( { "heading": "Name required", "content": "Please enter your name!" } );
-        if (!this.userReview) this.validationErrors.push( { "heading": "Content required", "content": "Please write something about this product!" } );
-        if (!this.userRating) this.validationErrors.push( { "heading": "Rating required", "content": "Please rate this product from 1 to 5!" } );
-
+        if (!this.userName) {
+          this.validationErrors.push(
+              {
+                "heading": "Name required",
+                "content": "Please enter your name!"
+              }
+          );
+        } if (!this.userReview) {
+          this.validationErrors.push(
+              {
+                "heading": "Content required",
+                "content": "Please write something about this product!"
+              }
+          );
+        } if (!this.userRating) {
+          this.validationErrors.push(
+              {
+                "heading": "Rating required",
+                "content": "Please rate this product from 1 to 5!"
+              }
+          );
+        }
       }
     }
   },
