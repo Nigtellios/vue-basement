@@ -11,12 +11,12 @@
 
 <script>
 import SingleProductPage from '@/components/SingleProductPage/SingleProductPage.vue';
-import ProductInfo from '@/components/ProductInfo/ProductInfo.vue';
-import ProductFeatures from '@/components/ProductFeatures/ProductFeatures.vue';
-import ProductHighlights from '@/components/ProductHighlights/ProductHighlights.vue';
-import ProductReviews from "@/components/ProductReviews/ProductReviews";
-import ReviewForm from "@/components/ReviewForm/ReviewForm";
-import ProductSidebar from "@/components/ProductSidebar/ProductSidebar.vue";
+import ProductInfo from '@/components/Product/ProductInfo/ProductInfo.vue';
+import ProductFeatures from '@/components/Product/ProductFeatures/ProductFeatures.vue';
+import ProductHighlights from '@/components/Product/ProductHighlights/ProductHighlights.vue';
+import ProductReviews from "@/components/Product/ProductReviews/ProductReviews";
+import ReviewForm from "@/components/Product/ReviewForm/ReviewForm";
+import ProductSidebar from "@/components/Product/ProductSidebar/ProductSidebar.vue";
 import MainNavigation from "@/components/MainNavigation/MainNavigation.vue";
 import MainFooter from "@/components/MainFooter/MainFooter.vue";
 
