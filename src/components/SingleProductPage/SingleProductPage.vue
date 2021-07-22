@@ -69,13 +69,13 @@
 </template>
 
 <script>
-import ProductHero from "@/components/ProductHero/ProductHero";
-import ProductInfo from "@/components/ProductInfo/ProductInfo";
-import ProductFeatures from "@/components/ProductFeatures/ProductFeatures";
-import ProductHighlights from "@/components/ProductHighlights/ProductHighlights";
-import ProductReviews from "@/components/ProductReviews/ProductReviews";
-import ReviewForm from "@/components/ReviewForm/ReviewForm";
-import ProductSidebar from "@/components/ProductSidebar/ProductSidebar";
+import ProductHero from "@/components/Product/ProductHero/ProductHero";
+import ProductInfo from "@/components/Product/ProductInfo/ProductInfo";
+import ProductFeatures from "@/components/Product/ProductFeatures/ProductFeatures";
+import ProductHighlights from "@/components/Product/ProductHighlights/ProductHighlights";
+import ProductReviews from "@/components/Product/ProductReviews/ProductReviews";
+import ReviewForm from "@/components/Product/ReviewForm/ReviewForm";
+import ProductSidebar from "@/components/Product/ProductSidebar/ProductSidebar";
 
 export default {
   name: 'SingleProductPage',
