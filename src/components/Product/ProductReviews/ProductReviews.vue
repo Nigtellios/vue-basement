@@ -1,10 +1,13 @@
 <template>
   <section class="reviews section--padding">
     <div class="reviews__box">
+      <p v-if="!productReviews.length">
+        There are no any reviews yet!
+      </p>
       <div
           class="single-item"
           v-for="review in productReviews"
-          :key="review.name"
+          :key="review.id"
       >
         <div class="single-item__profile-picture">
           <img src="" alt="" />
@@ -33,14 +36,6 @@ export default {
       type: Array,
       required: true,
     },
-  },
-  data() {
-    return {
-
-    }
-  },
-  methods: {
-
   },
 }
 </script>

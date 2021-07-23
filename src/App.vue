@@ -77,8 +77,5 @@ export default {
       ],
     }
   },
-  methods: {
-
-  },
 }
 </script>

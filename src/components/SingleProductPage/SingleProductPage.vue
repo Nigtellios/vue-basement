@@ -57,12 +57,22 @@
       ></div>
     </transition>
 
+    <product-tabs
+      :product-tabs="productTabs"
+      :selected-tab-index="selectedTabIndex"
+      @selectTab="selectTab"
+    />
+
     <product-reviews
+        v-show="selectedTabIndex === 0"
         :product-reviews="productReviews"
     />
 
     <review-form
-        @review-submitted="addReview"
+        v-show="selectedTabIndex === 1"
+        :validation-errors="validationErrors"
+        :product-reviews="productReviews"
+        @addReview="addReview"
     />
 
   </div>
@@ -76,10 +86,12 @@ import ProductHighlights from "@/components/Product/ProductHighlights/ProductHig
 import ProductReviews from "@/components/Product/ProductReviews/ProductReviews";
 import ReviewForm from "@/components/Product/ReviewForm/ReviewForm";
 import ProductSidebar from "@/components/Product/ProductSidebar/ProductSidebar";
+import ProductTabs from "@/components/Product/ProductTabs/ProductTabs";
 
 export default {
   name: 'SingleProductPage',
   components: {
+    ProductTabs,
     ProductHero,
     ProductInfo,
     ProductFeatures,
@@ -218,6 +230,22 @@ export default {
 
       /* Reviews */
       productReviews: [],
+
+      /* Validation */
+      validationErrors: [],
+
+      /* Tabs */
+      productTabs: [
+        {
+          "tabIndex": 0,
+          "tabContent": "Reviews"
+        },
+        {
+          "tabIndex": 1,
+          "tabContent": "Write a Review"
+        },
+      ],
+      selectedTabIndex: 0,
     }
   },
   methods: {
@@ -281,6 +309,10 @@ export default {
     addReview(productReview) {
       this.productReviews.push(productReview);
     },
+
+    selectTab(index) {
+      this.selectedTabIndex = index;
+    }
   },
   computed: {
     featureCounter() {
@@ -294,7 +326,7 @@ export default {
     },
     inStock() {
       return this.carVariants[this.selectedVariantID].variantQuantity;
-    }
+    },
   },
 }
 </script>

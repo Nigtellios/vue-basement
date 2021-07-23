@@ -1,0 +1,28 @@
+.tabs {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+
+  &__tab {
+    opacity: 0.25;
+    width: 50%;
+    text-align: center;
+    padding: 3rem 0 3rem 0;
+    border: 2px solid transparent;
+
+    &:hover {
+      cursor: pointer;
+      transition: $main;
+    }
+  }
+
+  &__tab-heading {
+    font-weight: 500;
+    font-size: 1.3rem;
+  }
+
+  &__tab--active {
+    opacity: 1;
+    border: 2px solid $dark;
+  }
+}
